@@ -73,8 +73,8 @@
         }
 
         .dark .glass-panel {
-            background: rgba(2, 6, 23, 0.6); /* Dark blue from palette */
-            border: 1px solid rgba(34, 211, 238, 0.1); /* Cyan border */
+            background: rgba(2, 6, 23, 0.6);
+            border: 1px solid rgba(34, 211, 238, 0.1);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
@@ -87,6 +87,7 @@
 <body x-data="{ 
         darkMode: localStorage.getItem('theme') === 'dark', 
         mobileMenu: false,
+        showNav: false,
         toggleTheme() {
             this.darkMode = !this.darkMode;
             localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
@@ -97,7 +98,8 @@
             }
         }
       }" 
-      x-init="$watch('darkMode', val => val ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')); if(darkMode) document.documentElement.classList.add('dark');"
+      x-init="$watch('darkMode', val => val ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')); if(darkMode) document.documentElement.classList.add('dark'); showNav = window.pageYOffset > 50;"
+      @scroll.window="showNav = (window.pageYOffset > 50)"
       class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-dark-text font-sans min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-500 overflow-x-hidden">
 
     <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
@@ -111,7 +113,9 @@
     </div>
 
 
-    <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-6 flex justify-center w-full">
+    <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-6 flex justify-center w-full transition-transform duration-500 transform"
+         :class="showNav ? 'translate-y-0 opacity-100' : '-translate-y-[150%] opacity-0'">
+        
         <div class="glass-panel px-6 py-3 rounded-full flex items-center justify-between gap-8 shadow-2xl transition-all duration-300 w-full max-w-5xl mx-auto">
             
             <a href="index.html" class="font-display font-black text-2xl tracking-tighter hover:scale-105 transition text-slate-900 dark:text-white">
@@ -119,20 +123,10 @@
             </a>
 
             <div class="hidden md:flex items-center gap-2 text-sm font-semibold">
-                
-                <a href="index.html" class="bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white px-5 py-2 rounded-full transition-all">
-                    Work
-                </a>
-
-                <a href="about.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">
-                    About
-                </a>
-                <a href="shop.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">
-                    Shop
-                </a>
-                <a href="kit.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">
-                    Kit
-                </a>
+                <a href="index.html" class="bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white px-5 py-2 rounded-full transition-all">Work</a>
+                <a href="about.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">About</a>
+                <a href="shop.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">Shop</a>
+                <a href="kit.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">Kit</a>
             </div>
 
             <div class="flex items-center gap-3">
@@ -165,20 +159,10 @@
         </button>
 
         <div class="space-y-6 text-center flex flex-col items-center">
-            
-            <a href="index.html" class="text-4xl font-display font-bold text-brand-600 dark:text-brand-400 transition tracking-tight">
-                Work
-            </a>
-
-            <a href="about.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 dark:hover:text-brand-400 transition tracking-tight">
-                About
-            </a>
-            <a href="shop.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 dark:hover:text-brand-400 transition tracking-tight">
-                Shop
-            </a>
-            <a href="kit.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 dark:hover:text-brand-400 transition tracking-tight">
-                Kit
-            </a>
+            <a href="index.html" class="text-4xl font-display font-bold text-brand-600 dark:text-brand-400 transition tracking-tight">Work</a>
+            <a href="about.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 dark:hover:text-brand-400 transition tracking-tight">About</a>
+            <a href="shop.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 dark:hover:text-brand-400 transition tracking-tight">Shop</a>
+            <a href="kit.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 dark:hover:text-brand-400 transition tracking-tight">Kit</a>
         </div>
         
         <div class="mt-12 w-full max-w-[240px]">
