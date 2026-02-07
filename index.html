@@ -23,10 +23,16 @@
                         display: ['"Outfit"', 'sans-serif'],
                     },
                     colors: {
+                        // Neon Pulse Palette
                         brand: {
-                            400: '#a78bfa',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
+                            400: '#22D3EE', // Cyan
+                            500: '#4F46E5', // Indigo
+                            600: '#4338CA', // Deep Indigo
+                        },
+                        dark: {
+                            bg: '#020617', // Dark blue background
+                            text: '#22D3EE', // Cyan text
+                            accent: '#4F46E5', // Indigo accent
                         }
                     },
                     animation: {
@@ -61,14 +67,14 @@
         }
         
         :not(.dark) .glass-panel {
-            background: rgba(255, 255, 255, 0.75); /* Slightly more opaque for contrast */
+            background: rgba(255, 255, 255, 0.75);
             border: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
         }
 
         .dark .glass-panel {
-            background: rgba(20, 20, 23, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(2, 6, 23, 0.6); /* Dark blue from palette */
+            border: 1px solid rgba(34, 211, 238, 0.1); /* Cyan border */
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
@@ -92,15 +98,15 @@
         }
       }" 
       x-init="$watch('darkMode', val => val ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')); if(darkMode) document.documentElement.classList.add('dark');"
-      class="bg-slate-50 dark:bg-[#050505] text-slate-900 dark:text-slate-200 font-sans min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-500 overflow-x-hidden">
+      class="bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-dark-text font-sans min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-500 overflow-x-hidden">
 
     <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-300/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob dark:hidden transition-opacity duration-1000"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-300/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob dark:hidden transition-opacity duration-1000"></div>
         <div class="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-cyan-300/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000 dark:hidden transition-opacity duration-1000"></div>
-        <div class="absolute bottom-[-20%] left-[20%] w-[600px] h-[600px] bg-pink-300/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-4000 dark:hidden transition-opacity duration-1000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-[600px] h-[600px] bg-blue-300/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-4000 dark:hidden transition-opacity duration-1000"></div>
 
-        <div class="absolute top-[-10%] left-1/4 w-[600px] h-[600px] bg-brand-600/20 rounded-full filter blur-[120px] opacity-0 dark:opacity-100 animate-blob transition-opacity duration-1000"></div>
-        <div class="absolute bottom-[-10%] right-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full filter blur-[120px] opacity-0 dark:opacity-100 animate-blob animation-delay-2000 transition-opacity duration-1000"></div>
+        <div class="absolute top-[-10%] left-1/4 w-[600px] h-[600px] bg-brand-500/20 rounded-full filter blur-[120px] opacity-0 dark:opacity-100 animate-blob transition-opacity duration-1000"></div>
+        <div class="absolute bottom-[-10%] right-1/4 w-[500px] h-[500px] bg-cyan-500/20 rounded-full filter blur-[120px] opacity-0 dark:opacity-100 animate-blob animation-delay-2000 transition-opacity duration-1000"></div>
         <div class="absolute inset-0 bg-noise pointer-events-none"></div>
     </div>
 
@@ -108,8 +114,8 @@
     <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-6 flex justify-center w-full">
         <div class="glass-panel px-6 py-3 rounded-full flex items-center justify-between gap-8 shadow-2xl transition-all duration-300 w-full max-w-5xl mx-auto">
             
-            <a href="index.html" class="font-display font-black text-2xl tracking-tighter hover:scale-105 transition">
-                AURA<span class="text-brand-500">.</span>
+            <a href="index.html" class="font-display font-black text-2xl tracking-tighter hover:scale-105 transition text-slate-900 dark:text-white">
+                AURA<span class="text-brand-500 dark:text-brand-400">.</span>
             </a>
 
             <div class="hidden md:flex items-center gap-2 text-sm font-semibold">
@@ -118,13 +124,13 @@
                     Work
                 </a>
 
-                <a href="about.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-white px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">
+                <a href="about.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">
                     About
                 </a>
-                <a href="shop.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-white px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">
+                <a href="shop.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">
                     Shop
                 </a>
-                <a href="kit.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-white px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">
+                <a href="kit.html" class="text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 px-5 py-2 rounded-full transition-all hover:bg-slate-50 dark:hover:bg-white/5">
                     Kit
                 </a>
             </div>
@@ -135,7 +141,7 @@
                     <svg x-show="darkMode" x-cloak class="w-4 h-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
                 </button>
                 
-                <a href="contact.html" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white transition-all duration-200 bg-slate-900 rounded-full dark:bg-white dark:text-black hover:scale-105">Let's Talk</a>
+                <a href="contact.html" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white transition-all duration-200 bg-slate-900 rounded-full dark:bg-brand-500 dark:text-white hover:scale-105">Let's Talk</a>
 
                 <button @click="mobileMenu = true" class="md:hidden p-2 text-slate-900 dark:text-white rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -152,7 +158,7 @@
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100 scale-100"
          x-transition:leave-end="opacity-0 scale-95"
-         class="fixed inset-0 z-[60] bg-slate-50/98 dark:bg-[#050505]/98 backdrop-blur-3xl flex flex-col items-center justify-center p-6 md:hidden">
+         class="fixed inset-0 z-[60] bg-slate-50/98 dark:bg-dark-bg/98 backdrop-blur-3xl flex flex-col items-center justify-center p-6 md:hidden">
         
         <button @click="mobileMenu = false" class="absolute top-8 right-8 p-3 rounded-full bg-slate-200 dark:bg-white/10 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-white/20 transition">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -164,13 +170,13 @@
                 Work
             </a>
 
-            <a href="about.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 transition tracking-tight">
+            <a href="about.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 dark:hover:text-brand-400 transition tracking-tight">
                 About
             </a>
-            <a href="shop.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 transition tracking-tight">
+            <a href="shop.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 dark:hover:text-brand-400 transition tracking-tight">
                 Shop
             </a>
-            <a href="kit.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 transition tracking-tight">
+            <a href="kit.html" class="text-4xl font-display font-bold text-slate-800 dark:text-slate-200 hover:text-brand-500 dark:hover:text-brand-400 transition tracking-tight">
                 Kit
             </a>
         </div>
@@ -196,7 +202,7 @@
             </div>
             
             <h1 class="text-6xl md:text-8xl lg:text-9xl font-display font-black tracking-tighter mb-8 leading-[0.9]">
-                <span class="bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-500 dark:from-white dark:to-slate-600">
+                <span class="bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-500 dark:from-white dark:to-slate-400">
                     Create. Code.
                 </span>
                 <br /> 
@@ -205,7 +211,7 @@
                 </span>
             </h1>
             
-            <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium">
                 I'm <strong class="text-slate-900 dark:text-white">Placeholder Name</strong>. A full-stack developer and creator building digital ecosystems for <span class="underline decoration-brand-500/50 decoration-2 underline-offset-4">150k+ peers.</span>
             </p>
         </header>
@@ -239,13 +245,13 @@
 
             <div class="md:col-span-1 glass-panel rounded-[2rem] p-8 flex flex-col justify-between hover:-translate-y-1 transition duration-300">
                 <div class="flex justify-between items-start">
-                    <div class="p-3 bg-blue-500/10 dark:bg-blue-500/20 rounded-2xl text-blue-600 dark:text-blue-400">
+                    <div class="p-3 bg-blue-500/10 dark:bg-brand-500/20 rounded-2xl text-blue-600 dark:text-brand-400">
                         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
                     </div>
                     <span class="text-emerald-500 text-xs font-bold bg-emerald-100 dark:bg-emerald-500/10 px-2 py-1 rounded-lg border border-emerald-500/20">+15%</span>
                 </div>
                 <div>
-                    <div class="text-4xl font-display font-black text-slate-900 dark:text-white mb-1">28.5K</div>
+                    <div class="text-4xl font-display font-bold text-slate-900 dark:text-white mb-1">28.5K</div>
                     <div class="text-sm text-slate-500 dark:text-slate-400 font-medium">Active Followers</div>
                 </div>
             </div>
@@ -271,12 +277,12 @@
                     </div>
                     <form class="flex-1 w-full flex gap-2">
                         <input type="email" placeholder="email@example.com" class="w-full bg-white dark:bg-black/30 border border-slate-200 dark:border-white/10 rounded-xl px-5 py-4 text-sm focus:ring-2 focus:ring-brand-500 outline-none transition dark:text-white placeholder-slate-400">
-                        <button class="bg-slate-900 dark:bg-white text-white dark:text-black font-bold px-8 py-4 rounded-xl text-sm hover:scale-105 transition shadow-xl">Join</button>
+                        <button class="bg-slate-900 dark:bg-brand-500 text-white font-bold px-8 py-4 rounded-xl text-sm hover:scale-105 transition shadow-xl">Join</button>
                     </form>
                 </div>
             </div>
 
-            <div class="md:col-span-1 bg-gradient-to-br from-rose-500 to-orange-500 rounded-[2rem] p-8 text-white relative overflow-hidden group cursor-pointer hover:shadow-2xl hover:shadow-orange-500/20 transition transform hover:-translate-y-1">
+            <div class="md:col-span-1 bg-gradient-to-br from-cyan-500 to-indigo-500 rounded-[2rem] p-8 text-white relative overflow-hidden group cursor-pointer hover:shadow-2xl hover:shadow-indigo-500/20 transition transform hover:-translate-y-1">
                 <a href="#" class="absolute inset-0 z-10"></a>
                 <div class="relative z-10 h-full flex flex-col justify-between">
                     <span class="font-bold tracking-widest text-[10px] uppercase border border-white/30 px-2 py-1 rounded w-fit backdrop-blur-sm">Shop</span>
@@ -302,10 +308,10 @@
         <div class="mt-24 border-t border-slate-200 dark:border-white/5 pt-12 text-center">
             <p class="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-8">Trusted by teams at</p>
             <div class="flex flex-wrap justify-center gap-12 opacity-40 grayscale mix-blend-screen">
-               <h3 class="text-2xl font-display font-black text-slate-800 dark:text-white">Spotify</h3>
-               <h3 class="text-2xl font-display font-black text-slate-800 dark:text-white">Gumroad</h3>
-               <h3 class="text-2xl font-display font-black text-slate-800 dark:text-white">Linear</h3>
-               <h3 class="text-2xl font-display font-black text-slate-800 dark:text-white">Framer</h3>
+               <h3 class="text-2xl font-display font-bold text-slate-800 dark:text-white">Spotify</h3>
+               <h3 class="text-2xl font-display font-bold text-slate-800 dark:text-white">Gumroad</h3>
+               <h3 class="text-2xl font-display font-bold text-slate-800 dark:text-white">Linear</h3>
+               <h3 class="text-2xl font-display font-bold text-slate-800 dark:text-white">Framer</h3>
             </div>
             <p class="mt-12 text-slate-500 text-sm">&copy; 2026 Aura Digital. All rights reserved.</p>
         </div>
