@@ -1,0 +1,86 @@
+/*------------------Core Utilities------------------*/
+[x-cloak] { 
+    display: none !important; 
+}
+
+/*------------------Background Texture------------------*/
+.bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/*------------------Glassmorphism System------------------*/
+.glass-panel {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    /*------------------Standard smooth transition for hover effects------------------*/
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/*------------------Light Mode Glass------------------*/
+:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+/*------------------Dark Mode Glass------------------*/
+.dark .glass-panel {
+    background: rgba(2, 6, 23, 0.6);
+    border: 1px solid rgba(34, 211, 238, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/*------------------Animations------------------*/
+
+/*------------------Animated Gradient Border (links.html)------------------*/
+.featured-border {
+    position: relative;
+    background: linear-gradient(90deg, #22D3EE, #4F46E5, #22D3EE);
+    background-size: 200% 100%;
+    animation: borderMove 3s linear infinite;
+    padding: 2px;
+    border-radius: 1rem;
+}
+
+@keyframes borderMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+/*------------------Print Styles (media-kit.html)------------------*/
+@media print {
+    nav, footer, .no-print, .bg-noise, .fixed { 
+        display: none !important; 
+    }
+    
+    body { 
+        background: white !important; 
+        color: black !important; 
+        -webkit-print-color-adjust: exact; 
+        print-color-adjust: exact; 
+    }
+    
+    .glass-panel { 
+        background: none !important; 
+        border: 1px solid #ddd !important; 
+        box-shadow: none !important; 
+        color: black !important; 
+    }
+    
+    /*------------------Ensure text contrast on white paper------------------*/
+    .text-white, .dark .text-white { 
+        color: black !important; 
+    }
+    
+    .text-slate-500, .dark .text-slate-400 { 
+        color: #555 !important; 
+    }
+    
+    h1, h2, h3 { 
+        color: black !important; 
+    }
+    
+    .print-break { 
+        break-inside: avoid; 
+    }
+}
